@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="container wrapper flex-grow-1">
+        <h1 class="my-4">{% trans "Deleting status" %}</h1>
+        <p>
+            <a class="text-decoration-none" href="{% url 'statuses:statuses' %}">
+                <img class="mb-1" width="18" height="16" src="https://img.icons8.com/color/48/back--v1.png" alt="back--v1"/>{% trans "Back to the list of statuses" %}
+            </a>
+        </p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>{% trans "Are you sure you want to delete" %} {{ status.name }}?</p>
+            <input class="btn btn-danger my-3" type="submit" value="{% trans 'Yes, delete' %}">
+        </form>
+    </div>
+{% endblock content %}

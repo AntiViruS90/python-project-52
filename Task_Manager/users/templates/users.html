@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    <h1 class="my-4">{% trans "Users" %}</h1>
+    <table class="table table-striped table-bordered shadow align-middle">
+        <thead>
+            <tr>
+                <th class="rounded-2">ID</th>
+                <th class="rounded-2" colspan="1">{% trans "Username" %}</th>
+                <th class="rounded-2">{% trans "Full name" %}</th>
+                <th class="rounded-2">{% trans "created at" %}</th>
+                <th class="rounded-2"></th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="rounded-2">{{ user.pk }}</td>
+                <td class="rounded-2">{{ user.username }}</td>
+                <td class="rounded-2">{{ user.first_name }} {{ user.last_name }}</td>
+                <td class="rounded-2">{{ user.date_joined }}</td>
+                <td class="rounded-2">
+                    <a class="btn btn-success btn-sm shadow" href="{% url 'users:update' user.pk %}">{% trans "Update" %}</a>
+                    <a class="btn btn-danger btn-sm shadow" href="{% url 'users:delete' user.pk %}">{% trans "Delete" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endblock content %}

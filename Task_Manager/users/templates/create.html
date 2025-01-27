@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="container wrapper flex-grow-1">
+        <h1 class="my-4">{% trans "Registration" %}</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+            <ul class="list-unstyled text-danger">
+                <li>{{ error }}</li>
+            </ul>
+            {% endfor %}
+
+            {% for f in form %}
+                <div class="mb-2">
+                    <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}
+                </div>
+                <div class="text-danger">{{ f.errors }}</div>
+
+                {% if f.help_text %}
+                    <div class="form-text mb-2 mt-0">{{ f.help_text }}</div>
+                {% endif %}
+            {% endfor %}
+
+            <input type="submit" class="btn btn-primary mt-2" value="{% trans "Register" %}">
+        </form>
+    </div>
+{% endblock content %}

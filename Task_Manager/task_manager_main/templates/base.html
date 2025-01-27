@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load i18n %}
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="icon" href="https://img.icons8.com/nolan/64/checklist.png" type="image/x-icon">
+    <title>{% translate "Task Manager" %}</title>
+</head>
+    <body class="d-flex flex-column min-vh-100 bg-success-subtle">
+        {% include "nav.html" %}
+        <div class="container wrapper bg-primary-subtle shadow flex-grow-1 rounded-3">
+            {% bootstrap_messages %}
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+        <footer>
+            <div class="container my-5 pt-4 border-top">
+                <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const alerts = document.querySelectorAll(".alert");
+                alerts.forEach(alert => alert.classList.add("mt-2"));
+            });
+        </script>
+    </body>
+</html>

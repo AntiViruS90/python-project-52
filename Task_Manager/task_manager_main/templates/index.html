@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <h1 class="my-4"></h1>
+    <div class="card my-3">
+        <div class="card-body p-5 bg-light rounded-3">
+            <div class="display-4 bg-light">{% translate "Hello everyone" %}</div>
+            <p class="lead">{% translate "My final work of the Python Developer course on the Hexlet platform" %}</p>
+            <hr>
+            <a class="btn btn-primary btn-lg" href="https://github.com/AntiViruS90/python-project-52.git">
+                {% translate "View the code on Github" %}
+            </a>
+        </div>
+    </div>
+{% endblock content %}

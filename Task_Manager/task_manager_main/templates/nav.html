@@ -1,0 +1,23 @@
+{% load i18n %}
+<header class="d-flex flex-wrap justify-content-center py-3 my-4 mx-3 bg-primary-subtle shadow rounded-3">
+    <a href="{% url 'main:home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4 ms-2">{% translate "Task Manager" %}</span>
+    </a>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{% url 'users:users' %}" class="nav-link">{% translate "Users" %}</a></li>
+        {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'statuses:statuses' %}" class="nav-link">{% translate "Statuses" %}</a></li>
+            <li class="nav-item"><a href="{% url 'labels:labels' %}" class="nav-link">{% translate "Labels" %}</a></li>
+            <li class="nav-item"><a href="{% url 'tasks:tasks' %}" class="nav-link">{% translate "Tasks" %}</a></li>
+            <li class="nav-item">
+                <form action="{% url 'main:logout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn nav-link" value="{% translate 'Sign out' %}">
+                </form>
+            </li>
+        {% else %}
+            <li class="nav-item"><a href="{% url 'main:login' %}" class="nav-link">{% translate "Sign in" %}</a></li>
+            <li class="nav-item"><a href="{% url 'users:create' %}" class="nav-link">{% translate "Registration" %}</a></li>
+        {% endif %}
+    </ul>
+</header>
