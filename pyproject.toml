@@ -5,7 +5,7 @@ description = "Task Manager"
 authors = ["AntiViruS90 <131804906+AntiViruS90@users.noreply.github.com>"]
 readme = "README.md"
 packages = [
-    {include = "Task_Manager"}
+    {include = "task_manager"}
 ]
 
 [tool.poetry.dependencies]
