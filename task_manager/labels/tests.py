@@ -34,7 +34,9 @@ class TestLabelsView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_labels(self):
         self.client.login(
@@ -62,7 +64,9 @@ class TestCreateLabelView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_create_label_get(self):
         self.client.login(
@@ -111,7 +115,9 @@ class TestDeleteLabelView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_delete_label_get(self):
         self.client.login(
@@ -171,7 +177,9 @@ class TestDeleteLabelView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Невозможно удалить метку, так как она используется')
+        self.assertEqual(
+            str(messages[0]),
+            'Невозможно удалить метку, так как она используется')
 
         self.assertTrue(Label.objects.filter(name='test_label_1'))
 
@@ -193,7 +201,9 @@ class TestUpdateLabelView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_update_label_get(self):
         self.client.login(

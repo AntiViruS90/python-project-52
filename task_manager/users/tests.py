@@ -51,7 +51,8 @@ class TestCreateUserView(TestCase):
             target_status_code=200)
 
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Пользователь успешно зарегистрирован')
+        self.assertEqual(
+            str(messages[0]), 'Пользователь успешно зарегистрирован')
 
         new_user = get_user_model().objects.get(username='test_username')
         self.assertEqual(new_user.username, 'test_username')
@@ -85,7 +86,8 @@ class TestDeleteUserView(TestCase):
         users.objects.create_user(**test_user_2)
 
     def test_delete_get_with_uknown_user(self):
-        response = self.client.get(reverse_lazy('users:delete', kwargs={'pk': 1}))
+        response = self.client.get(
+            reverse_lazy('users:delete', kwargs={'pk': 1}))
 
         self.assertRedirects(
             response,
@@ -94,12 +96,15 @@ class TestDeleteUserView(TestCase):
             target_status_code=200
         )
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_delete_get_with_wrong_user(self):
         self.client.login(username=test_user_1['username'],
                           password=test_user_1['password'])
-        response = self.client.get(reverse_lazy('users:delete', kwargs={'pk': 2}))
+        response = self.client.get(
+            reverse_lazy('users:delete', kwargs={'pk': 2}))
 
         self.assertRedirects(
             response,
@@ -107,12 +112,15 @@ class TestDeleteUserView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'У вас нет прав для изменения другого пользователя.')
+        self.assertEqual(
+            str(messages[0]),
+            'У вас нет прав для изменения другого пользователя.')
 
     def test_delete_get(self):
         self.client.login(username=test_user_1['username'],
                           password=test_user_1['password'])
-        response = self.client.get(reverse_lazy('users:delete', kwargs={'pk': 1}))
+        response = self.client.get(
+            reverse_lazy('users:delete', kwargs={'pk': 1}))
 
         self.assertTemplateUsed(response, 'delete.html')
         self.assertContains(response,
@@ -125,7 +133,8 @@ class TestDeleteUserView(TestCase):
     def test_delete_post(self):
         self.client.login(username=test_user_1['username'],
                           password=test_user_1['password'])
-        response = self.client.post(reverse_lazy('users:delete', kwargs={"pk": 1}))
+        response = self.client.post(
+            reverse_lazy('users:delete', kwargs={"pk": 1}))
 
         self.assertRedirects(
             response,
@@ -147,7 +156,8 @@ class TestDeleteUserView(TestCase):
             status=status,
             author=get_user_model().objects.get(username=test_user_1['username'])
         )
-        response = self.client.post(reverse_lazy('users:delete', kwargs={'pk': 1}))
+        response = self.client.post(
+            reverse_lazy('users:delete', kwargs={'pk': 1}))
 
         self.assertRedirects(
             response,
@@ -155,7 +165,9 @@ class TestDeleteUserView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Невозможно удалить пользователя, потому что он используется')
+        self.assertEqual(
+            str(messages[0]),
+            'Невозможно удалить пользователя, потому что он используется')
 
         users = get_user_model()
         self.assertTrue(users.objects.filter(username=test_user_1['username']))
@@ -168,7 +180,8 @@ class TestUpdateUserView(TestCase):
         users.objects.create_user(**test_user_2)
 
     def test_update_get_with_uknown_user(self):
-        response = self.client.get(reverse_lazy('users:update', kwargs={'pk': 1}))
+        response = self.client.get(
+            reverse_lazy('users:update', kwargs={'pk': 1}))
 
         self.assertRedirects(
             response,
@@ -176,28 +189,35 @@ class TestUpdateUserView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_update_get_with_wrong_user(self):
         self.client.login(username=test_user_1['username'],
                           password=test_user_1['password'])
-        response = self.client.post(reverse_lazy('users:update', kwargs={"pk": 2}))
+        response = self.client.post(
+            reverse_lazy('users:update', kwargs={"pk": 2}))
         self.assertRedirects(
             response,
             reverse_lazy('users:users'),
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'У вас нет прав для изменения другого пользователя.')
+        self.assertEqual(
+            str(messages[0]),
+            'У вас нет прав для изменения другого пользователя.')
 
     def test_update_get(self):
         self.client.login(username=test_user_1['username'],
                           password=test_user_1['password'])
-        response = self.client.get(reverse_lazy('users:update', kwargs={"pk": 1}))
+        response = self.client.get(
+            reverse_lazy('users:update', kwargs={"pk": 1}))
         self.assertTemplateUsed(response, 'update.html')
-        # self.assertContains(response, f"{test_user_1['username']}", status_code=200)
-        self.assertContains(response, f"{test_user_1['first_name']}", status_code=200)
-        self.assertContains(response, f"{test_user_1['last_name']}", status_code=200)
+        self.assertContains(
+            response, f"{test_user_1['first_name']}", status_code=200)
+        self.assertContains(
+            response, f"{test_user_1['last_name']}", status_code=200)
 
     def test_update_post(self):
         self.client.login(username=test_user_1['username'],

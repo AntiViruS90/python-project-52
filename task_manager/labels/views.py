@@ -55,4 +55,5 @@ class DeleteLabelView(
     template_name = 'delete_label.html'
     success_url = reverse_lazy('labels:labels')
     success_message = _("Label successfully deleted")
-    delete_error_message = _("It is not possible to delete the label because it in use")
+    delete_error_message = _(
+        "It is not possible to delete the label because it in use")

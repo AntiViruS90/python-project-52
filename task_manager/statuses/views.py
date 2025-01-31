@@ -30,14 +30,22 @@ class StatusesView(UserLoginRequiredMixin, ListView):
     context_object_name = 'statuses'
 
 
-class CreateStatusView(UserLoginRequiredMixin, SuccessMessageMixin, CreateView):
+class CreateStatusView(
+    UserLoginRequiredMixin,
+    SuccessMessageMixin,
+    CreateView
+):
     form_class = CreateStatusForm
     template_name = 'create_status.html'
     success_message = _('Status successfully created')
     success_url = reverse_lazy('statuses:statuses')
 
 
-class UpdateStatusView(UserLoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UpdateStatusView(
+    UserLoginRequiredMixin,
+    SuccessMessageMixin,
+    UpdateView
+):
     model = Status
     form_class = UpdateStatusForm
     template_name = 'update_status.html'
@@ -55,5 +63,6 @@ class DeleteStatusView(
     template_name = 'delete_status.html'
     success_url = reverse_lazy('statuses:statuses')
     success_message = _('Status succesfully deleted')
-    delete_error_message = _('It is not possible to delete the status because it is in use')
+    delete_error_message = _(
+        'It is not possible to delete the status because it is in use')
 

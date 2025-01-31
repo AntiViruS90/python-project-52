@@ -33,7 +33,9 @@ class TestStatusesView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_statuses(self):
         self.client.login(
@@ -61,7 +63,9 @@ class TestCreateStatusView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_create_status_get(self):
         self.client.login(
@@ -108,7 +112,9 @@ class TestDeleteStatusView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_delete_status_get(self):
         self.client.login(
@@ -186,7 +192,9 @@ class TestUpdateStatusView(TestCase):
             status_code=302,
             target_status_code=200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Вы не авторизованы! Пожалуйста, выполните вход.')
+        self.assertEqual(
+            str(messages[0]),
+            'Вы не авторизованы! Пожалуйста, выполните вход.')
 
     def test_update_status_get(self):
         self.client.login(

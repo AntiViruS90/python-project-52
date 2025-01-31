@@ -5,7 +5,7 @@ exclude = [
 ]
 extend = "./pyproject.toml"
 
-line-length = 50
+line-length = 79
 
 lint.select = [
     "E",  # pycodestyle errors
@@ -15,4 +15,4 @@ lint.select = [
     "I",  # isort errors
     "C",  # McCabe complexity checker
 ]
-lint.ignore = ["E501", "F403", "F401"]
+lint.ignore = ["F403"]
