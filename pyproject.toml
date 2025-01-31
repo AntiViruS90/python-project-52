@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "Task_Manager"
+name = "hexlet-code"
 version = "0.1.0"
 description = "Task Manager"
 authors = ["AntiViruS90 <131804906+AntiViruS90@users.noreply.github.com>"]
 readme = "README.md"
 packages = [
-    {include = "Task_Manager"}
+    {include = "hexlet-code"}
 ]
 
 [tool.poetry.dependencies]
