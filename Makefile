@@ -16,6 +16,11 @@ lint:
 test:
 	python manage.py test
 
+test-coverage:
+	coverage run manage.py test
+	coverage report
+	coverage xml
+
 selfcheck:
 	uv pip check
 

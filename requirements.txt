@@ -84,3 +84,4 @@ urllib3==2.3.0
     # via
     #   -r requirements.in
     #   requests
+coverage
