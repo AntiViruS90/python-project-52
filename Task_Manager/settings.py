@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import rollbar
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
@@ -29,8 +30,8 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', False)
-POST_SERVER_ITEM_ACCESS_TOKEN = os.getenv(
-    'POST_SERVER_ITEM_ACCESS_TOKEN', False
+ROLLBAR_ACCESS_TOKEN = os.getenv(
+    'ROLLBAR_ACCESS_TOKEN', False
 )
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -174,11 +175,12 @@ LOGOUT_REDIRECT_URL = reverse_lazy('main:home')
 LOGIN_URL = reverse_lazy('main:login')
 
 ROLLBAR = {
-    'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
+    'access_token': ROLLBAR_ACCESS_TOKEN,
     'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
-    'root': str(BASE_DIR)
+    'code_version': '1.0',
+    'root': BASE_DIR
 }
+rollbar.init(**ROLLBAR)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
