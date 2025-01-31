@@ -34,6 +34,9 @@ build:
 start:
 	python -m gunicorn core.asgi:application -k uvicorn.workers.UvicornWorker
 
+render-start:
+	gunicorn Task_Manager.wsgi
+
 start_WNDS:
 	uvicorn Task_Manager.asgi:application
 

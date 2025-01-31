@@ -5,7 +5,7 @@ description = "Task Manager"
 authors = ["AntiViruS90 <131804906+AntiViruS90@users.noreply.github.com>"]
 readme = "README.md"
 packages = [
-    {include = "hexlet-code"}
+    {include = "Task_Manager"}
 ]
 
 [tool.poetry.dependencies]
