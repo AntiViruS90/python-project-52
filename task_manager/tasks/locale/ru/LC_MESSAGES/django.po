@@ -52,7 +52,7 @@ msgstr "Описание"
 
 #: .\mixins.py:13
 msgid "Only the author of the task can delete it"
-msgstr "Удалить может только автор задачи"
+msgstr "Задачу может удалить только ее автор"
 
 #: .\templates\create_task.html:5 .\templates\tasks.html:5
 msgid "Create task"
