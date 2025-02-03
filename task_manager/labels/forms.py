@@ -21,8 +21,3 @@ class CreateLabelForm(forms.ModelForm):
                     'placeholder': _('Name')
                 }),
         }
-
-
-class UpdateLabelForm(CreateLabelForm):
-    def clean_name(self):
-        return self.cleaned_data.get("name")

@@ -55,8 +55,3 @@ class CreateTaskForm(forms.ModelForm):
                 'rows': '10',
             }),
         }
-
-
-class UpdateTaskForm(CreateTaskForm):
-    def clean_name(self):
-        return self.cleaned_data.get('name')

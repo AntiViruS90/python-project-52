@@ -12,35 +12,32 @@ from django.views.generic import (
     UpdateView,
 )
 
-from task_manager.task_manager_main.mixins import (
+from task_manager.mixins import (
     DeleteProtectErrorMixin,
     UserLoginRequiredMixin,
 )
 
-from .forms import (
-    CreateLabelForm,
-    UpdateLabelForm,
-)
+from .forms import CreateLabelForm
 from .models import Label
 
 
 class LabelsView(UserLoginRequiredMixin, ListView):
     model = Label
-    template_name = 'labels.html'
+    template_name = 'labels/labels.html'
     context_object_name = 'labels'
 
 
 class CreateLabelView(UserLoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = CreateLabelForm
-    template_name = 'create_label.html'
+    template_name = 'labels/create_label.html'
     success_message = _("Label successfully created")
     success_url = reverse_lazy('labels:labels')
 
 
 class UpdateLabelView(UserLoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
-    form_class = UpdateLabelForm
-    template_name = 'update_label.html'
+    form_class = CreateLabelForm
+    template_name = 'labels/update_label.html'
     success_message = _("Label successfully changed")
     success_url = reverse_lazy('labels:labels')
 
@@ -52,7 +49,7 @@ class DeleteLabelView(
     DeleteView
 ):
     model = Label
-    template_name = 'delete_label.html'
+    template_name = 'labels/delete_label.html'
     success_url = reverse_lazy('labels:labels')
     success_message = _("Label successfully deleted")
     delete_error_message = _(

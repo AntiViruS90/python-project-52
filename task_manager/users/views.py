@@ -15,7 +15,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from task_manager.task_manager_main.mixins import (
+from task_manager.mixins import (
     DeleteProtectErrorMixin,
     UserLoginRequiredMixin,
 )
@@ -29,13 +29,13 @@ from .mixins import UserPermissionTestMixin
 
 class UsersView(ListView):
     model = get_user_model()
-    template_name = 'users.html'
+    template_name = 'users/users.html'
     context_object_name = 'users'
 
 
 class CreateUserView(SuccessMessageMixin, CreateView):
     form_class = RegisterUserForm
-    template_name = 'create.html'
+    template_name = 'users/create.html'
     success_message = _('User successfully registered')
     success_url = reverse_lazy('main:login')
 
@@ -48,7 +48,7 @@ class UpdateUserView(
 ):
     model = get_user_model()
     form_class = UpdateUserForm
-    template_name = 'update.html'
+    template_name = 'users/update.html'
     success_message = _('User successfully updated')
     success_url = reverse_lazy('users:users')
 
@@ -60,7 +60,7 @@ class DeleteUserView(
     DeleteView
 ):
     model = get_user_model()
-    template_name = 'delete.html'
+    template_name = 'users/delete.html'
     success_message = _('User successfully deleted')
     delete_error_message = _(
         'It is not possible to delete user because it is being used'

@@ -12,7 +12,7 @@ from django.utils.translation import (
 )
 from django.views.generic.base import View
 
-from .forms import LoginUserForm
+from task_manager.task_manager_main.forms import LoginUserForm
 
 
 class HomePageView(View):

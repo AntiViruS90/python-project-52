@@ -12,21 +12,18 @@ from django.views.generic import (
     UpdateView,
 )
 
-from task_manager.task_manager_main.mixins import (
+from task_manager.mixins import (
     DeleteProtectErrorMixin,
     UserLoginRequiredMixin,
 )
 
-from .forms import (
-    CreateStatusForm,
-    UpdateStatusForm,
-)
+from .forms import CreateStatusForm
 from .models import Status
 
 
 class StatusesView(UserLoginRequiredMixin, ListView):
     model = Status
-    template_name = 'statuses.html'
+    template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
 
 
@@ -36,7 +33,7 @@ class CreateStatusView(
     CreateView
 ):
     form_class = CreateStatusForm
-    template_name = 'create_status.html'
+    template_name = 'statuses/create_status.html'
     success_message = _('Status successfully created')
     success_url = reverse_lazy('statuses:statuses')
 
@@ -47,8 +44,8 @@ class UpdateStatusView(
     UpdateView
 ):
     model = Status
-    form_class = UpdateStatusForm
-    template_name = 'update_status.html'
+    form_class = CreateStatusForm
+    template_name = 'statuses/update_status.html'
     success_message = _('Status succesfully changed')
     success_url = reverse_lazy('statuses:statuses')
 
@@ -60,7 +57,7 @@ class DeleteStatusView(
     DeleteView
 ):
     model = Status
-    template_name = 'delete_status.html'
+    template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:statuses')
     success_message = _('Status succesfully deleted')
     delete_error_message = _(

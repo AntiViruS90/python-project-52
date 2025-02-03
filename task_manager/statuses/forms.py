@@ -21,8 +21,3 @@ class CreateStatusForm(forms.ModelForm):
                     'placeholder': _('Name')
                 }),
         }
-
-
-class UpdateStatusForm(CreateStatusForm):
-    def clean_name(self):
-        return self.cleaned_data.get('name')
